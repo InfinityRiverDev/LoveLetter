@@ -1,1 +1,810 @@
 
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f7eeea">
+<title>Для Полины ♡</title>
+<meta name="description" content="Немного химии. И кое-что для тебя.">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Manrope:wght@400;500;600&display=swap');
+
+:root {
+  --ink: #73544e;
+  --rose: #ad6b70;
+  --size: 90px;
+  --gap: 13px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+  background: #f8f1eb;
+}
+
+body {
+  color: var(--ink);
+  font-family: Manrope, Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+button, a { -webkit-tap-highlight-color: transparent; }
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+button:focus-visible, a:focus-visible {
+  outline: 2px solid #ae737b;
+  outline-offset: 6px;
+}
+
+.page {
+  position: relative;
+  isolation: isolate;
+  min-height: 100svh;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 18% 20%, #f3dfe1a6, transparent 48%),
+    radial-gradient(ellipse at 87% 80%, #e8e5d6ab, transparent 48%),
+    #f9f3ed;
+}
+
+.grain {
+  position: absolute;
+  inset: 0;
+  opacity: .23;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%239c7d6b' opacity='.18' filter='url(%23n)' d='M0 0h160v160H0z'/%3E%3C/svg%3E");
+}
+
+.top {
+  position: absolute;
+  top: 35px;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 44px;
+  z-index: 5;
+}
+
+.brand {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-size: 22px;
+  letter-spacing: .3px;
+}
+
+.top small {
+  font-size: 9px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  opacity: .6;
+}
+
+.intro {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.intro h1 {
+  font: 400 clamp(42px, 7vw, 66px)/1.08 'Cormorant Garamond', Georgia, serif;
+  text-align: center;
+  margin: 0 0 40px;
+  transition: opacity .5s, transform .5s;
+}
+
+.intro h1 em {
+  font-weight: 400;
+  color: #ad747c;
+}
+
+.tap {
+  pointer-events: auto;
+  position: relative;
+  width: 160px;
+  height: 66px;
+  border: 1px solid #c99599;
+  border-radius: 5px;
+  background: #e9babe;
+  color: #704c50;
+  box-shadow: 0 5px 0 #d6a4a8, 0 14px 30px #a4677120;
+  font-size: 12px;
+  letter-spacing: 4px;
+  transition: background .25s, box-shadow .25s;
+  transform-origin: 65% 50%;
+}
+
+.tap:hover {
+  background: #edc5c8;
+  box-shadow: 0 5px 0 #d6a4a8, 0 18px 36px #a4677130;
+}
+
+.tap .star {
+  font-size: 15px;
+  margin-right: 12px;
+  letter-spacing: 0;
+}
+
+.hint {
+  margin: 22px 0 0;
+  font-size: 10px;
+  letter-spacing: .6px;
+  opacity: .55;
+  transition: opacity .5s;
+}
+
+.opened .intro h1,
+.opened .hint {
+  opacity: 0;
+  transform: translateY(-12px);
+}
+
+.opened .tap {
+  animation: buttonFall 1.5s cubic-bezier(.4, 0, .8, .3) forwards;
+  pointer-events: none;
+}
+
+@keyframes buttonFall {
+  0% { transform: rotate(0); }
+  20% { transform: translate(8px, 10px) rotate(9deg); }
+  100% {
+    transform: translate(65px, 110vh) rotate(24deg);
+    opacity: 0;
+  }
+}
+
+.reveal {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 110px 20px;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.opened .reveal {
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.composition {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 31px;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--gap);
+  position: relative;
+}
+
+.row:last-child { gap: calc(var(--gap) * .6); }
+
+.word-gap { width: 8px; }
+
+.hanger {
+  position: relative;
+  opacity: 0;
+  transform: translateY(-110vh) rotate(var(--tilt));
+  transform-origin: 50% -100px;
+}
+
+.hanger::before {
+  content: '';
+  position: absolute;
+  width: 1px;
+  height: 130vh;
+  background: linear-gradient(
+    to bottom, transparent, #b9948660 45%, #b994868c
+  );
+  bottom: 100%;
+  left: 50%;
+  z-index: -1;
+}
+
+.hanger::after {
+  content: '';
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #ab8c78;
+  top: 3px;
+  left: calc(50% - 2px);
+}
+
+.opened .hanger {
+  animation: drop 2.6s cubic-bezier(.16, 1, .3, 1) var(--delay) forwards;
+}
+
+.tile {
+  width: var(--size);
+  height: calc(var(--size) * 1.12);
+  position: relative;
+  border: 1px solid #b28d7f70;
+  border-radius: 3px;
+  box-shadow: 3px 4px 0 #b28d7f20, 0 8px 22px #a9807110;
+  background: var(--tile);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transition: transform .3s, box-shadow .3s;
+  cursor: default;
+}
+
+.tile:hover {
+  transform: rotate(-4deg) translateY(-5px);
+  box-shadow: 5px 8px 0 #b28d7f20;
+}
+
+.number {
+  position: absolute;
+  top: 8px;
+  left: 9px;
+  font-size: 10px;
+}
+
+.mass {
+  position: absolute;
+  top: 8px;
+  right: 7px;
+  font-size: 8px;
+  opacity: .65;
+}
+
+.symbol {
+  font: 400 42px/1 Georgia, serif;
+  margin-top: 5px;
+  color: #674d47;
+}
+
+.element {
+  font-size: 8px;
+  position: absolute;
+  bottom: 10px;
+  letter-spacing: .15px;
+}
+
+.comma {
+  position: absolute;
+  right: -18px;
+  bottom: 0;
+  font: 38px Georgia, serif;
+  color: #a77b74;
+  opacity: 0;
+}
+
+.opened .comma { animation: fadeIn .7s 2.5s forwards; }
+
+.apostrophe {
+  position: absolute;
+  right: -7px;
+  top: 20px;
+  font: 30px Georgia, serif;
+  opacity: 0;
+}
+
+.opened .apostrophe { animation: fadeIn .7s 3.6s forwards; }
+
+@keyframes drop {
+  0% {
+    opacity: 0;
+    transform: translateY(-110vh) rotate(var(--tilt));
+  }
+  12% { opacity: 1; }
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotate(var(--rest));
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dedication {
+  text-align: center;
+  margin-top: 35px;
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.opened .dedication { animation: fadeIn 1.3s 5.5s forwards; }
+
+.dedication p {
+  font: italic 400 29px/1.3 'Cormorant Garamond', Georgia, serif;
+  margin: 0;
+}
+
+.dedication small {
+  display: block;
+  margin-top: 12px;
+  letter-spacing: 1.3px;
+  font-size: 9px;
+  opacity: .6;
+}
+
+.heart {
+  position: absolute;
+  z-index: -1;
+  color: #bd4958;
+  opacity: 0;
+  font-family: Georgia, serif;
+  user-select: none;
+}
+
+.opened .heart {
+  animation:
+    heartIn 1.7s var(--hdelay) forwards,
+    float 5s calc(var(--hdelay) + 1.7s) ease-in-out infinite;
+}
+
+@keyframes heartIn {
+  from {
+    opacity: 0;
+    transform: scale(.1) rotate(-20deg);
+  }
+  to {
+    opacity: var(--opacity);
+    transform: scale(1) rotate(var(--rotation));
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(var(--rotation));
+  }
+  50% {
+    transform: translateY(-12px) rotate(calc(var(--rotation) + 8deg));
+  }
+}
+
+.bottom {
+  position: absolute;
+  bottom: 28px;
+  left: 44px;
+  right: 44px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  z-index: 5;
+}
+
+.note {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 17px;
+  font-style: italic;
+  opacity: .65;
+}
+
+.controls {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+}
+
+.control {
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font-size: 10px;
+  letter-spacing: .5px;
+  padding: 10px 0;
+  text-decoration: none;
+  opacity: .7;
+}
+
+.control:hover { opacity: 1; }
+
+.after {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.opened .after {
+  visibility: visible;
+  opacity: 1;
+  transition-delay: 5.5s;
+}
+
+.sound {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.bars {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 13px;
+}
+
+.bars i {
+  width: 2px;
+  height: 5px;
+  background: currentColor;
+}
+
+.playing .bars i { animation: bar .9s alternate infinite; }
+.playing .bars i:nth-child(2) { animation-delay: .3s; }
+.playing .bars i:nth-child(3) { animation-delay: .6s; }
+
+@keyframes bar {
+  to { height: 13px; }
+}
+
+.sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
+@media (min-width: 900px) {
+  .composition { gap: 35px; }
+  .row:nth-child(1) { margin-left: -55px; }
+  .row:nth-child(2) { margin-left: 50px; }
+  .row:nth-child(3) { margin-left: -10px; }
+}
+
+@media (max-width: 600px) {
+  :root { --size: 65px; --gap: 9px; }
+  .top { top: 25px; padding: 0 24px; }
+  .top small { font-size: 8px; letter-spacing: 1.6px; }
+  .brand { font-size: 20px; }
+  .reveal { padding: 100px 18px; }
+  .composition { gap: 30px; }
+  .symbol { font-size: 33px; }
+  .number { top: 6px; left: 6px; font-size: 9px; }
+  .mass { top: 7px; right: 5px; font-size: 6px; }
+  .element { font-size: 6.5px; bottom: 8px; }
+  .word-gap { width: 8px; }
+  .dedication { margin-top: 35px; }
+  .dedication p { font-size: 25px; }
+  .bottom { left: 24px; right: 24px; bottom: 20px; }
+  .note { font-size: 15px; }
+  .controls { gap: 14px; }
+  .control { font-size: 9px; }
+  .heart { max-width: 20px; }
+  .intro h1 { margin-bottom: 34px; }
+  .tap { width: 154px; height: 62px; }
+}
+
+@media (max-height: 700px) {
+  .reveal { padding-top: 82px; padding-bottom: 80px; }
+  .composition { gap: 20px; }
+  .dedication { margin-top: 24px; }
+  :root { --size: 61px; }
+  .top { top: 22px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .opened .hanger {
+    animation: fadeIn .5s var(--delay) forwards;
+    transform: none;
+  }
+  .opened .tap { animation: none; opacity: 0; }
+  .opened .heart { animation: fadeIn .5s var(--hdelay) forwards; }
+  .playing .bars i { animation: none; }
+}
+</style>
+</head>
+
+<body>
+<main class="page" id="page">
+  <div class="grain"></div>
+
+  <header class="top">
+    <span class="brand">a little chemistry</span>
+    <small>только для тебя</small>
+  </header>
+
+  <div id="hearts" aria-hidden="true"></div>
+
+  <section class="intro" aria-label="Открыть открытку">
+    <h1>Кое-что <em>особенное.</em><br>Для тебя.</h1>
+    <button class="tap" id="tap">
+      <span class="star" aria-hidden="true">✧</span>tap
+    </button>
+    <p class="hint">нажми — и пусть случится химия</p>
+  </section>
+
+  <section class="reveal" aria-label="Полина, ты такая милая">
+    <div class="composition" id="composition" aria-hidden="true"></div>
+    <div class="dedication">
+      <p>Полина, ты такая милая.</p>
+      <small>некоторые сочетания — просто идеальны ♡</small>
+    </div>
+  </section>
+
+  <footer class="bottom">
+    <span class="note">made of little things ♡</span>
+    <div class="controls after">
+      <button class="control" id="replay" aria-label="Повторить анимацию">
+        ещё раз ↺
+      </button>
+      <button
+        class="control sound"
+        id="sound"
+        aria-label="Включить музыку"
+        aria-pressed="false"
+      >
+        <span class="bars" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span id="soundText">звук</span>
+      </button>
+    </div>
+  </footer>
+
+  <p id="announcement" class="sr" aria-live="polite"></p>
+</main>
+
+<script>
+const elements = {
+  Po: [84, 'Polonium', '209', '#e7c7c6'],
+  Li: [3, 'Lithium', '6.94', '#e8e4cb'],
+  Na: [11, 'Sodium', '22.990', '#eed6c2'],
+  Y: [39, 'Yttrium', '88.906', '#e6c8cd'],
+  O: [8, 'Oxygen', '15.999', '#e9dbc4'],
+  U: [92, 'Uranium', '238.03', '#dce1cf'],
+  Re: [75, 'Rhenium', '186.21', '#d4dedc'],
+  S: [16, 'Sulfur', '32.06', '#f0dfb7'],
+  Cu: [29, 'Copper', '63.546', '#e8bfb2'],
+  Te: [52, 'Tellurium', '127.60', '#d7d9c6']
+};
+
+const rows = [
+  ['Po', 'Li', 'Na'],
+  ['Y', 'O', 'U', 'Re'],
+  ['S', 'O', ' ', 'Cu', 'Te']
+];
+
+let index = 0;
+const composition = document.getElementById('composition');
+
+rows.forEach((symbols, ri) => {
+  const row = document.createElement('div');
+  row.className = 'row';
+
+  symbols.forEach((symbol, si) => {
+    if (symbol === ' ') {
+      const gap = document.createElement('span');
+      gap.className = 'word-gap';
+      row.append(gap);
+      return;
+    }
+
+    const [number, name, mass, color] = elements[symbol];
+    const holder = document.createElement('div');
+    const rotations = [-2, 1.7, -1, 1.2, -1.5, 2, -1.4, 1.2, -1.7, 1.5, -1];
+
+    holder.className = 'hanger';
+    holder.style.cssText = `
+      --delay: ${.65 + index * .21}s;
+      --tilt: ${index % 2 ? 12 : -11}deg;
+      --rest: ${rotations[index]}deg;
+      --tile: ${color};
+    `;
+
+    holder.innerHTML = `
+      <div class="tile" title="${number} · ${name} · ${mass}">
+        <span class="number">${number}</span>
+        <span class="mass">${mass}</span>
+        <span class="symbol">${symbol}</span>
+        <span class="element">${name}</span>
+      </div>
+    `;
+
+    if (ri === 1 && si === 2) {
+      holder.innerHTML += '<span class="apostrophe">’</span>';
+    }
+
+    row.append(holder);
+    index++;
+  });
+
+  if (ri === 0) {
+    row.innerHTML += '<span class="comma">,</span>';
+  }
+
+  composition.append(row);
+});
+
+const positions = [
+  [12, 22, 17, -18, .75],
+  [85, 19, 12, 14, .7],
+  [8, 49, 12, -12, .5],
+  [89, 55, 20, 18, .8],
+  [17, 78, 14, 12, .65],
+  [81, 81, 12, -20, .6],
+  [65, 12, 9, 10, .45],
+  [37, 88, 9, -15, .4]
+];
+
+positions.forEach(([x, y, size, rotation, opacity], i) => {
+  const heart = document.createElement('span');
+  heart.className = 'heart';
+  heart.textContent = '♥';
+  heart.style.cssText = `
+    left: ${x}%;
+    top: ${y}%;
+    font-size: ${size}px;
+    --rotation: ${rotation}deg;
+    --opacity: ${opacity};
+    --hdelay: ${.65 + i * .17}s;
+  `;
+  document.getElementById('hearts').append(heart);
+});
+
+let ctx, master, timer;
+let isPlaying = false;
+let step = 0;
+
+const soundButton = document.getElementById('sound');
+
+function note(midi, time, duration, volume) {
+  const frequency = 440 * Math.pow(2, (midi - 69) / 12);
+
+  [1, 2, 3].forEach((harmonic, i) => {
+    const oscillator = ctx.createOscillator();
+    const gain = ctx.createGain();
+
+    oscillator.type = 'sine';
+    oscillator.frequency.value = frequency * harmonic;
+
+    gain.gain.setValueAtTime(0, time);
+    gain.gain.linearRampToValueAtTime(
+      volume / [1, 6, 14][i],
+      time + .012
+    );
+    gain.gain.exponentialRampToValueAtTime(.0001, time + duration);
+
+    oscillator.connect(gain);
+    gain.connect(master);
+    oscillator.start(time);
+    oscillator.stop(time + duration + .05);
+  });
+}
+
+const melody = [
+  76, 79, 83, 81, 79, 76, 74, 72,
+  74, 76, 79, 76, 74, 72, 71, 74,
+  76, 79, 84, 83, 79, 76, 74, 72,
+  74, 76, 79, 81, 79, 76, 74, 72
+];
+
+const chords = [
+  [48, 55, 60, 64],
+  [45, 52, 57, 60],
+  [41, 48, 53, 57],
+  [43, 50, 55, 59]
+];
+
+function schedule() {
+  if (!isPlaying) return;
+
+  const time = ctx.currentTime + .08;
+  note(melody[step % 32], time, 2.5, .095);
+
+  if (step % 4 === 0) {
+    const chord = chords[Math.floor(step / 8) % 4];
+    chord.forEach((midi, i) => {
+      note(midi, time + i * .11, 4, .055);
+    });
+  }
+
+  step++;
+  timer = setTimeout(schedule, 540);
+}
+
+function syncSound() {
+  soundButton.classList.toggle('playing', isPlaying);
+  soundButton.setAttribute('aria-pressed', String(isPlaying));
+  soundButton.setAttribute(
+    'aria-label',
+    isPlaying ? 'Выключить музыку' : 'Включить музыку'
+  );
+  document.getElementById('soundText').textContent =
+    isPlaying ? 'звук вкл.' : 'звук выкл.';
+}
+
+async function startMusic() {
+  try {
+    if (!ctx) {
+      ctx = new (window.AudioContext || window.webkitAudioContext)();
+      master = ctx.createGain();
+      master.gain.value = .65;
+      master.connect(ctx.destination);
+    }
+
+    await ctx.resume();
+    isPlaying = true;
+    master.gain.cancelScheduledValues(ctx.currentTime);
+    master.gain.setTargetAtTime(.65, ctx.currentTime, .12);
+
+    schedule();
+    syncSound();
+  } catch (error) {
+    isPlaying = false;
+    syncSound();
+  }
+}
+
+function stopMusic() {
+  isPlaying = false;
+  clearTimeout(timer);
+
+  if (ctx) {
+    master.gain.setTargetAtTime(0, ctx.currentTime, .08);
+  }
+
+  syncSound();
+}
+
+let replayTimer;
+
+function reveal() {
+  document.getElementById('page').classList.add('opened');
+  document.getElementById('tap').disabled = true;
+  clearTimeout(replayTimer);
+
+  replayTimer = setTimeout(() => {
+    document.getElementById('announcement').textContent =
+      'Полина, ты такая милая.';
+  }, 5500);
+}
+
+document.getElementById('tap').addEventListener('click', () => {
+  reveal();
+  if (!isPlaying) startMusic();
+});
+
+soundButton.addEventListener('click', () => {
+  if (isPlaying) stopMusic();
+  else startMusic();
+});
+
+document.getElementById('replay').addEventListener('click', () => {
+  clearTimeout(replayTimer);
+  const page = document.getElementById('page');
+  page.classList.remove('opened');
+  document.getElementById('announcement').textContent = '';
+  void page.offsetWidth;
+  reveal();
+});
+
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden && isPlaying) stopMusic();
+});
+</script>
+</body>
+</html>
