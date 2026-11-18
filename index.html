@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="ru">
 <head>
@@ -7,519 +6,240 @@
 <meta name="theme-color" content="#f7eeea">
 <title>Для Полины ♡</title>
 <meta name="description" content="Немного химии. И кое-что для тебя.">
-
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Manrope:wght@400;500;600&display=swap');
 
-:root {
-  --ink: #73544e;
-  --rose: #ad6b70;
-  --size: 90px;
-  --gap: 13px;
-}
-
-* { box-sizing: border-box; }
-
-html, body {
-  margin: 0;
-  min-height: 100%;
-  background: #f8f1eb;
-}
-
-body {
-  color: var(--ink);
-  font-family: Manrope, Arial, sans-serif;
-  overflow-x: hidden;
-}
-
-button, a { -webkit-tap-highlight-color: transparent; }
-
-button {
-  font: inherit;
-  cursor: pointer;
-}
-
-button:focus-visible, a:focus-visible {
-  outline: 2px solid #ae737b;
-  outline-offset: 6px;
-}
-
-.page {
-  position: relative;
-  isolation: isolate;
-  min-height: 100svh;
-  overflow: hidden;
+:root{--ink:#73544e;--size:90px;--gap:13px}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:#f8f1eb}
+body{color:var(--ink);font-family:Manrope,Arial,sans-serif;overflow-x:hidden}
+button,a{-webkit-tap-highlight-color:transparent}
+button{font:inherit;cursor:pointer}
+button:focus-visible,a:focus-visible{outline:2px solid #ae737b;outline-offset:6px}
+.page{
+  position:relative;
+  isolation:isolate;
+  min-height:100svh;
+  overflow:hidden;
   background:
-    radial-gradient(ellipse at 18% 20%, #f3dfe1a6, transparent 48%),
-    radial-gradient(ellipse at 87% 80%, #e8e5d6ab, transparent 48%),
+    radial-gradient(ellipse at 18% 20%,#f3dfe1a6,transparent 48%),
+    radial-gradient(ellipse at 87% 80%,#e8e5d6ab,transparent 48%),
     #f9f3ed;
 }
+.grain{
+  position:absolute;inset:0;opacity:.23;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%239c7d6b' opacity='.18' filter='url(%23n)' d='M0 0h160v160H0z'/%3E%3C/svg%3E");
+}
+.top{
+  position:absolute;top:35px;left:0;right:0;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 44px;z-index:5;
+}
+.brand{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-style:italic;font-size:22px;letter-spacing:.3px;
+}
+.top small{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;opacity:.6}
+.intro{
+  position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;padding:24px;
+  z-index:4;pointer-events:none;
+}
+.intro h1{
+  font:400 clamp(42px,7vw,66px)/1.08 'Cormorant Garamond',Georgia,serif;
+  text-align:center;margin:0 0 40px;
+  transition:opacity .5s,transform .5s;
+}
+.intro h1 em{font-weight:400;color:#ad747c}
+.tap{
+  pointer-events:auto;position:relative;width:160px;height:66px;
+  border:1px solid #c99599;border-radius:5px;
+  background:#e9babe;color:#704c50;
+  box-shadow:0 5px 0 #d6a4a8,0 14px 30px #a4677120;
+  font-size:12px;letter-spacing:4px;
+  transition:background .25s,box-shadow .25s;
+  transform-origin:65% 50%;
+}
+.tap:hover{background:#edc5c8;box-shadow:0 5px 0 #d6a4a8,0 18px 36px #a4677130}
+.tap .star{font-size:15px;margin-right:12px;letter-spacing:0}
+.hint{margin:22px 0 0;font-size:10px;letter-spacing:.6px;opacity:.55;transition:opacity .5s}
+.opened .intro h1,.opened .hint{opacity:0;transform:translateY(-12px)}
+.opened .tap{animation:buttonFall 1.5s cubic-bezier(.4,0,.8,.3) forwards;pointer-events:none}
 
-.grain {
-  position: absolute;
-  inset: 0;
-  opacity: .23;
-  pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%239c7d6b' opacity='.18' filter='url(%23n)' d='M0 0h160v160H0z'/%3E%3C/svg%3E");
+@keyframes buttonFall{
+  0%{transform:rotate(0)}
+  20%{transform:translate(8px,10px) rotate(9deg)}
+  100%{transform:translate(65px,110vh) rotate(24deg);opacity:0}
 }
 
-.top {
-  position: absolute;
-  top: 35px;
-  left: 0;
-  right: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 44px;
-  z-index: 5;
+.reveal{
+  position:relative;min-height:100svh;
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;padding:110px 20px;
+  visibility:hidden;pointer-events:none;
+}
+.opened .reveal{visibility:visible;pointer-events:auto}
+.composition{
+  display:flex;flex-direction:column;align-items:center;gap:31px;
+  touch-action:none;user-select:none;-webkit-user-select:none;
+}
+.row{
+  display:flex;justify-content:center;align-items:center;
+  gap:var(--gap);position:relative;
+}
+.row:last-child{gap:calc(var(--gap)*.6)}
+.word-gap{width:8px}
+.hanger{
+  position:relative;opacity:0;
+  transform:translateY(-110vh) rotate(var(--tilt));
+  transform-origin:50% -100px;
+}
+.pendulum{
+  position:relative;
+  transform-origin:50% -100px;
+  will-change:transform;
+}
+.pendulum:before{
+  content:'';position:absolute;width:1px;height:130vh;
+  background:linear-gradient(to bottom,transparent,#b9948660 45%,#b994868c);
+  bottom:100%;left:50%;z-index:-1;
+}
+.pendulum:after{
+  content:'';position:absolute;width:4px;height:4px;
+  border-radius:50%;background:#ab8c78;
+  top:3px;left:calc(50% - 2px);
+}
+.opened .hanger{animation:drop 2.6s cubic-bezier(.16,1,.3,1) var(--delay) forwards}
+.tile{
+  width:var(--size);height:calc(var(--size)*1.12);
+  position:relative;border:1px solid #b28d7f70;border-radius:3px;
+  box-shadow:3px 4px 0 #b28d7f20,0 8px 22px #a9807110;
+  background:var(--tile);
+  display:flex;align-items:center;justify-content:center;flex-direction:column;
+  transition:box-shadow .3s;
+  cursor:grab;user-select:none;-webkit-user-select:none;
+}
+.tile:hover{box-shadow:5px 8px 0 #b28d7f20}
+.dragging .tile{cursor:grabbing;box-shadow:5px 10px 24px #a9807130}
+.number{position:absolute;top:8px;left:9px;font-size:10px}
+.mass{position:absolute;top:8px;right:7px;font-size:8px;opacity:.65}
+.symbol{font:400 42px/1 Georgia,serif;margin-top:5px;color:#674d47}
+.element{font-size:8px;position:absolute;bottom:10px;letter-spacing:.15px}
+.comma{
+  position:absolute;right:-18px;bottom:0;
+  font:38px Georgia,serif;color:#a77b74;opacity:0;
+}
+.opened .comma{animation:fadeIn .7s 2.5s forwards}
+.apostrophe{position:absolute;right:-7px;top:20px;font:30px Georgia,serif;opacity:0}
+.opened .apostrophe{animation:fadeIn .7s 3.6s forwards}
+
+@keyframes drop{
+  0%{opacity:0;transform:translateY(-110vh) rotate(var(--tilt))}
+  12%{opacity:1}
+  100%{opacity:1;transform:translateY(0) rotate(var(--rest))}
+}
+@keyframes fadeIn{
+  to{opacity:1;transform:translateY(0)}
 }
 
-.brand {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-style: italic;
-  font-size: 22px;
-  letter-spacing: .3px;
+.dedication{text-align:center;margin-top:35px;opacity:0;transform:translateY(10px)}
+.opened .dedication{animation:fadeIn 1.3s 5.5s forwards}
+.dedication p{font:italic 400 29px/1.3 'Cormorant Garamond',Georgia,serif;margin:0}
+.dedication small{display:block;margin-top:12px;letter-spacing:1.3px;font-size:9px;opacity:.6}
+.play-hint{
+  font:400 9px/1.6 Manrope,Arial,sans-serif!important;
+  letter-spacing:.4px;margin-top:16px!important;opacity:.55;
 }
-
-.top small {
-  font-size: 9px;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  opacity: .6;
+.motion-status{
+  display:block;font:400 9px/1.5 Manrope,Arial,sans-serif;
+  max-width:280px;margin:8px auto 0;color:#946c69;
 }
-
-.intro {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-  z-index: 4;
-  pointer-events: none;
+.heart{
+  position:absolute;z-index:-1;color:#bd4958;opacity:0;
+  font-family:Georgia,serif;user-select:none;
 }
-
-.intro h1 {
-  font: 400 clamp(42px, 7vw, 66px)/1.08 'Cormorant Garamond', Georgia, serif;
-  text-align: center;
-  margin: 0 0 40px;
-  transition: opacity .5s, transform .5s;
-}
-
-.intro h1 em {
-  font-weight: 400;
-  color: #ad747c;
-}
-
-.tap {
-  pointer-events: auto;
-  position: relative;
-  width: 160px;
-  height: 66px;
-  border: 1px solid #c99599;
-  border-radius: 5px;
-  background: #e9babe;
-  color: #704c50;
-  box-shadow: 0 5px 0 #d6a4a8, 0 14px 30px #a4677120;
-  font-size: 12px;
-  letter-spacing: 4px;
-  transition: background .25s, box-shadow .25s;
-  transform-origin: 65% 50%;
-}
-
-.tap:hover {
-  background: #edc5c8;
-  box-shadow: 0 5px 0 #d6a4a8, 0 18px 36px #a4677130;
-}
-
-.tap .star {
-  font-size: 15px;
-  margin-right: 12px;
-  letter-spacing: 0;
-}
-
-.hint {
-  margin: 22px 0 0;
-  font-size: 10px;
-  letter-spacing: .6px;
-  opacity: .55;
-  transition: opacity .5s;
-}
-
-.opened .intro h1,
-.opened .hint {
-  opacity: 0;
-  transform: translateY(-12px);
-}
-
-.opened .tap {
-  animation: buttonFall 1.5s cubic-bezier(.4, 0, .8, .3) forwards;
-  pointer-events: none;
-}
-
-@keyframes buttonFall {
-  0% { transform: rotate(0); }
-  20% { transform: translate(8px, 10px) rotate(9deg); }
-  100% {
-    transform: translate(65px, 110vh) rotate(24deg);
-    opacity: 0;
-  }
-}
-
-.reveal {
-  position: relative;
-  min-height: 100svh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  padding: 110px 20px;
-  visibility: hidden;
-  pointer-events: none;
-}
-
-.opened .reveal {
-  visibility: visible;
-  pointer-events: auto;
-}
-
-.composition {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 31px;
-}
-
-.row {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: var(--gap);
-  position: relative;
-}
-
-.row:last-child { gap: calc(var(--gap) * .6); }
-
-.word-gap { width: 8px; }
-
-.hanger {
-  position: relative;
-  opacity: 0;
-  transform: translateY(-110vh) rotate(var(--tilt));
-  transform-origin: 50% -100px;
-}
-
-.hanger::before {
-  content: '';
-  position: absolute;
-  width: 1px;
-  height: 130vh;
-  background: linear-gradient(
-    to bottom, transparent, #b9948660 45%, #b994868c
-  );
-  bottom: 100%;
-  left: 50%;
-  z-index: -1;
-}
-
-.hanger::after {
-  content: '';
-  position: absolute;
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: #ab8c78;
-  top: 3px;
-  left: calc(50% - 2px);
-}
-
-.opened .hanger {
-  animation: drop 2.6s cubic-bezier(.16, 1, .3, 1) var(--delay) forwards;
-}
-
-.tile {
-  width: var(--size);
-  height: calc(var(--size) * 1.12);
-  position: relative;
-  border: 1px solid #b28d7f70;
-  border-radius: 3px;
-  box-shadow: 3px 4px 0 #b28d7f20, 0 8px 22px #a9807110;
-  background: var(--tile);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  transition: transform .3s, box-shadow .3s;
-  cursor: default;
-}
-
-.tile:hover {
-  transform: rotate(-4deg) translateY(-5px);
-  box-shadow: 5px 8px 0 #b28d7f20;
-}
-
-.number {
-  position: absolute;
-  top: 8px;
-  left: 9px;
-  font-size: 10px;
-}
-
-.mass {
-  position: absolute;
-  top: 8px;
-  right: 7px;
-  font-size: 8px;
-  opacity: .65;
-}
-
-.symbol {
-  font: 400 42px/1 Georgia, serif;
-  margin-top: 5px;
-  color: #674d47;
-}
-
-.element {
-  font-size: 8px;
-  position: absolute;
-  bottom: 10px;
-  letter-spacing: .15px;
-}
-
-.comma {
-  position: absolute;
-  right: -18px;
-  bottom: 0;
-  font: 38px Georgia, serif;
-  color: #a77b74;
-  opacity: 0;
-}
-
-.opened .comma { animation: fadeIn .7s 2.5s forwards; }
-
-.apostrophe {
-  position: absolute;
-  right: -7px;
-  top: 20px;
-  font: 30px Georgia, serif;
-  opacity: 0;
-}
-
-.opened .apostrophe { animation: fadeIn .7s 3.6s forwards; }
-
-@keyframes drop {
-  0% {
-    opacity: 0;
-    transform: translateY(-110vh) rotate(var(--tilt));
-  }
-  12% { opacity: 1; }
-  100% {
-    opacity: 1;
-    transform: translateY(0) rotate(var(--rest));
-  }
-}
-
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.dedication {
-  text-align: center;
-  margin-top: 35px;
-  opacity: 0;
-  transform: translateY(10px);
-}
-
-.opened .dedication { animation: fadeIn 1.3s 5.5s forwards; }
-
-.dedication p {
-  font: italic 400 29px/1.3 'Cormorant Garamond', Georgia, serif;
-  margin: 0;
-}
-
-.dedication small {
-  display: block;
-  margin-top: 12px;
-  letter-spacing: 1.3px;
-  font-size: 9px;
-  opacity: .6;
-}
-
-.heart {
-  position: absolute;
-  z-index: -1;
-  color: #bd4958;
-  opacity: 0;
-  font-family: Georgia, serif;
-  user-select: none;
-}
-
-.opened .heart {
+.opened .heart{
   animation:
     heartIn 1.7s var(--hdelay) forwards,
     float 5s calc(var(--hdelay) + 1.7s) ease-in-out infinite;
 }
-
-@keyframes heartIn {
-  from {
-    opacity: 0;
-    transform: scale(.1) rotate(-20deg);
-  }
-  to {
-    opacity: var(--opacity);
-    transform: scale(1) rotate(var(--rotation));
-  }
+@keyframes heartIn{
+  from{opacity:0;transform:scale(.1) rotate(-20deg)}
+  to{opacity:var(--opacity);transform:scale(1) rotate(var(--rotation))}
 }
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0) rotate(var(--rotation));
-  }
-  50% {
-    transform: translateY(-12px) rotate(calc(var(--rotation) + 8deg));
-  }
+@keyframes float{
+  0%,100%{transform:translateY(0) rotate(var(--rotation))}
+  50%{transform:translateY(-12px) rotate(calc(var(--rotation) + 8deg))}
 }
-
-.bottom {
-  position: absolute;
-  bottom: 28px;
-  left: 44px;
-  right: 44px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  z-index: 5;
+.bottom{
+  position:absolute;bottom:28px;left:44px;right:44px;
+  display:flex;justify-content:space-between;align-items:center;
+  gap:12px;z-index:5;
 }
-
-.note {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 17px;
-  font-style: italic;
-  opacity: .65;
+.note{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:17px;font-style:italic;opacity:.65;
 }
-
-.controls {
-  display: flex;
-  gap: 18px;
-  align-items: center;
+.controls{display:flex;gap:18px;align-items:center}
+.control{
+  border:0;background:transparent;color:var(--ink);
+  font-size:10px;letter-spacing:.5px;padding:10px 0;
+  text-decoration:none;opacity:.7;
 }
+.control:hover{opacity:1}
+.after{visibility:hidden;opacity:0;transition:opacity 1s}
+.opened .after{visibility:visible;opacity:1;transition-delay:5.5s}
+.sound{display:flex;align-items:center;gap:7px}
+.bars{display:flex;align-items:center;gap:2px;height:13px}
+.bars i{width:2px;height:5px;background:currentColor}
+.playing .bars i{animation:bar .9s alternate infinite}
+.playing .bars i:nth-child(2){animation-delay:.3s}
+.playing .bars i:nth-child(3){animation-delay:.6s}
+@keyframes bar{to{height:13px}}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
 
-.control {
-  border: 0;
-  background: transparent;
-  color: var(--ink);
-  font-size: 10px;
-  letter-spacing: .5px;
-  padding: 10px 0;
-  text-decoration: none;
-  opacity: .7;
+@media(min-width:900px){
+  .composition{gap:35px}
+  .row:nth-child(1){margin-left:-55px}
+  .row:nth-child(2){margin-left:50px}
+  .row:nth-child(3){margin-left:-10px}
 }
-
-.control:hover { opacity: 1; }
-
-.after {
-  visibility: hidden;
-  opacity: 0;
-  transition: opacity 1s;
+@media(max-width:600px){
+  :root{--size:65px;--gap:9px}
+  .top{top:25px;padding:0 24px}
+  .top small{font-size:8px;letter-spacing:1.6px}
+  .brand{font-size:20px}
+  .reveal{padding:100px 18px}
+  .composition{gap:30px}
+  .symbol{font-size:33px}
+  .number{top:6px;left:6px;font-size:9px}
+  .mass{top:7px;right:5px;font-size:6px}
+  .element{font-size:6.5px;bottom:8px}
+  .dedication{margin-top:35px}
+  .dedication p{font-size:25px}
+  .bottom{left:24px;right:24px;bottom:20px;flex-wrap:wrap}
+  .note{font-size:13px}
+  .controls{gap:15px}
+  .control{font-size:9px}
+  .heart{max-width:20px}
+  .intro h1{margin-bottom:34px}
+  .tap{width:154px;height:62px}
 }
-
-.opened .after {
-  visibility: visible;
-  opacity: 1;
-  transition-delay: 5.5s;
+@media(max-height:700px){
+  .reveal{padding-top:82px;padding-bottom:80px}
+  .composition{gap:20px}
+  .dedication{margin-top:24px}
+  :root{--size:61px}
+  .top{top:22px}
 }
-
-.sound {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-}
-
-.bars {
-  display: flex;
-  align-items: center;
-  gap: 2px;
-  height: 13px;
-}
-
-.bars i {
-  width: 2px;
-  height: 5px;
-  background: currentColor;
-}
-
-.playing .bars i { animation: bar .9s alternate infinite; }
-.playing .bars i:nth-child(2) { animation-delay: .3s; }
-.playing .bars i:nth-child(3) { animation-delay: .6s; }
-
-@keyframes bar {
-  to { height: 13px; }
-}
-
-.sr {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip-path: inset(50%);
-}
-
-@media (min-width: 900px) {
-  .composition { gap: 35px; }
-  .row:nth-child(1) { margin-left: -55px; }
-  .row:nth-child(2) { margin-left: 50px; }
-  .row:nth-child(3) { margin-left: -10px; }
-}
-
-@media (max-width: 600px) {
-  :root { --size: 65px; --gap: 9px; }
-  .top { top: 25px; padding: 0 24px; }
-  .top small { font-size: 8px; letter-spacing: 1.6px; }
-  .brand { font-size: 20px; }
-  .reveal { padding: 100px 18px; }
-  .composition { gap: 30px; }
-  .symbol { font-size: 33px; }
-  .number { top: 6px; left: 6px; font-size: 9px; }
-  .mass { top: 7px; right: 5px; font-size: 6px; }
-  .element { font-size: 6.5px; bottom: 8px; }
-  .word-gap { width: 8px; }
-  .dedication { margin-top: 35px; }
-  .dedication p { font-size: 25px; }
-  .bottom { left: 24px; right: 24px; bottom: 20px; }
-  .note { font-size: 15px; }
-  .controls { gap: 14px; }
-  .control { font-size: 9px; }
-  .heart { max-width: 20px; }
-  .intro h1 { margin-bottom: 34px; }
-  .tap { width: 154px; height: 62px; }
-}
-
-@media (max-height: 700px) {
-  .reveal { padding-top: 82px; padding-bottom: 80px; }
-  .composition { gap: 20px; }
-  .dedication { margin-top: 24px; }
-  :root { --size: 61px; }
-  .top { top: 22px; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .opened .hanger {
-    animation: fadeIn .5s var(--delay) forwards;
-    transform: none;
-  }
-  .opened .tap { animation: none; opacity: 0; }
-  .opened .heart { animation: fadeIn .5s var(--hdelay) forwards; }
-  .playing .bars i { animation: none; }
+@media(prefers-reduced-motion:reduce){
+  .opened .hanger{animation:fadeIn .5s var(--delay) forwards;transform:none}
+  .opened .tap{animation:none;opacity:0}
+  .opened .heart{animation:fadeIn .5s var(--hdelay) forwards}
+  .playing .bars i{animation:none}
 }
 </style>
 </head>
-
 <body>
 <main class="page" id="page">
   <div class="grain"></div>
@@ -544,6 +264,8 @@ button:focus-visible, a:focus-visible {
     <div class="dedication">
       <p>Полина, ты такая милая.</p>
       <small>некоторые сочетания — просто идеальны ♡</small>
+      <p class="play-hint">проведи по буквам или наклони телефон</p>
+      <span class="motion-status" id="motionStatus" role="status"></span>
     </div>
   </section>
 
@@ -553,12 +275,12 @@ button:focus-visible, a:focus-visible {
       <button class="control" id="replay" aria-label="Повторить анимацию">
         ещё раз ↺
       </button>
-      <button
-        class="control sound"
-        id="sound"
-        aria-label="Включить музыку"
-        aria-pressed="false"
-      >
+      <button class="control" id="motion"
+        aria-label="Включить управление наклоном" aria-pressed="false">
+        наклон ◇
+      </button>
+      <button class="control sound" id="sound"
+        aria-label="Включить музыку" aria-pressed="false">
         <span class="bars" aria-hidden="true"><i></i><i></i><i></i></span>
         <span id="soundText">звук</span>
       </button>
@@ -569,33 +291,37 @@ button:focus-visible, a:focus-visible {
 </main>
 
 <script>
+const $ = id => document.getElementById(id);
+const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
+
 const elements = {
-  Po: [84, 'Polonium', '209', '#e7c7c6'],
-  Li: [3, 'Lithium', '6.94', '#e8e4cb'],
-  Na: [11, 'Sodium', '22.990', '#eed6c2'],
-  Y: [39, 'Yttrium', '88.906', '#e6c8cd'],
-  O: [8, 'Oxygen', '15.999', '#e9dbc4'],
-  U: [92, 'Uranium', '238.03', '#dce1cf'],
-  Re: [75, 'Rhenium', '186.21', '#d4dedc'],
-  S: [16, 'Sulfur', '32.06', '#f0dfb7'],
-  Cu: [29, 'Copper', '63.546', '#e8bfb2'],
-  Te: [52, 'Tellurium', '127.60', '#d7d9c6']
+  Po:[84,'Polonium','209','#e7c7c6'],
+  Li:[3,'Lithium','6.94','#e8e4cb'],
+  Na:[11,'Sodium','22.990','#eed6c2'],
+  Y:[39,'Yttrium','88.906','#e6c8cd'],
+  O:[8,'Oxygen','15.999','#e9dbc4'],
+  U:[92,'Uranium','238.03','#dce1cf'],
+  Re:[75,'Rhenium','186.21','#d4dedc'],
+  S:[16,'Sulfur','32.06','#f0dfb7'],
+  Cu:[29,'Copper','63.546','#e8bfb2'],
+  Te:[52,'Tellurium','127.60','#d7d9c6']
 };
 
 const rows = [
-  ['Po', 'Li', 'Na'],
-  ['Y', 'O', 'U', 'Re'],
-  ['S', 'O', ' ', 'Cu', 'Te']
+  ['Po','Li','Na'],
+  ['Y','O','U','Re'],
+  ['S','O',' ','Cu','Te']
 ];
 
-let index = 0;
-const composition = document.getElementById('composition');
+const rests = [-2,1.7,-1,1.2,-1.5,2,-1.4,1.2,-1.7,1.5,-1];
+const cards = [];
+const composition = $('composition');
 
-rows.forEach((symbols, ri) => {
+rows.forEach((symbols, rowIndex) => {
   const row = document.createElement('div');
   row.className = 'row';
 
-  symbols.forEach((symbol, si) => {
+  symbols.forEach((symbol, column) => {
     if (symbol === ' ') {
       const gap = document.createElement('span');
       gap.className = 'word-gap';
@@ -603,207 +329,605 @@ rows.forEach((symbols, ri) => {
       return;
     }
 
-    const [number, name, mass, color] = elements[symbol];
+    const i = cards.length;
+    const [number,name,mass,color] = elements[symbol];
     const holder = document.createElement('div');
-    const rotations = [-2, 1.7, -1, 1.2, -1.5, 2, -1.4, 1.2, -1.7, 1.5, -1];
 
     holder.className = 'hanger';
+    holder.dataset.card = i;
     holder.style.cssText = `
-      --delay: ${.65 + index * .21}s;
-      --tilt: ${index % 2 ? 12 : -11}deg;
-      --rest: ${rotations[index]}deg;
-      --tile: ${color};
+      --delay:${.65+i*.21}s;
+      --tilt:${i%2?12:-11}deg;
+      --rest:${rests[i]}deg;
+      --tile:${color};
     `;
 
     holder.innerHTML = `
-      <div class="tile" title="${number} · ${name} · ${mass}">
-        <span class="number">${number}</span>
-        <span class="mass">${mass}</span>
-        <span class="symbol">${symbol}</span>
-        <span class="element">${name}</span>
+      <div class="pendulum">
+        <div class="tile" title="${number} · ${name} · ${mass}">
+          <span class="number">${number}</span>
+          <span class="mass">${mass}</span>
+          <span class="symbol">${symbol}</span>
+          <span class="element">${name}</span>
+        </div>
+        ${rowIndex===1&&column===2?'<span class="apostrophe">’</span>':''}
       </div>
     `;
 
-    if (ri === 1 && si === 2) {
-      holder.innerHTML += '<span class="apostrophe">’</span>';
-    }
+    const state = {
+      holder,
+      swing:holder.querySelector('.pendulum'),
+      angle:0,
+      velocity:0,
+      lift:0,
+      liftVelocity:0,
+      ready:false
+    };
+
+    cards.push(state);
+
+    holder.addEventListener('animationend', event => {
+      if (event.target === holder) state.ready = true;
+    });
 
     row.append(holder);
-    index++;
   });
 
-  if (ri === 0) {
-    row.innerHTML += '<span class="comma">,</span>';
+  if (rowIndex === 0) {
+    row.insertAdjacentHTML('beforeend','<span class="comma">,</span>');
   }
 
   composition.append(row);
 });
 
 const positions = [
-  [12, 22, 17, -18, .75],
-  [85, 19, 12, 14, .7],
-  [8, 49, 12, -12, .5],
-  [89, 55, 20, 18, .8],
-  [17, 78, 14, 12, .65],
-  [81, 81, 12, -20, .6],
-  [65, 12, 9, 10, .45],
-  [37, 88, 9, -15, .4]
+  [12,22,17,-18,.75],
+  [85,19,12,14,.7],
+  [8,49,12,-12,.5],
+  [89,55,20,18,.8],
+  [17,78,14,12,.65],
+  [81,81,12,-20,.6],
+  [65,12,9,10,.45],
+  [37,88,9,-15,.4]
 ];
 
-positions.forEach(([x, y, size, rotation, opacity], i) => {
+positions.forEach(([x,y,size,rotation,opacity],i) => {
   const heart = document.createElement('span');
   heart.className = 'heart';
   heart.textContent = '♥';
   heart.style.cssText = `
-    left: ${x}%;
-    top: ${y}%;
-    font-size: ${size}px;
-    --rotation: ${rotation}deg;
-    --opacity: ${opacity};
-    --hdelay: ${.65 + i * .17}s;
+    left:${x}%;
+    top:${y}%;
+    font-size:${size}px;
+    --rotation:${rotation}deg;
+    --opacity:${opacity};
+    --hdelay:${.65+i*.17}s;
   `;
-  document.getElementById('hearts').append(heart);
+  $('hearts').append(heart);
 });
 
-let ctx, master, timer;
-let isPlaying = false;
-let step = 0;
+// Маятники: инерция, пружина и плавное затухание.
+let frame = 0;
+let lastTime = 0;
+let activePointer = null;
+let drag = null;
+let previousPoint = null;
+let tiltTarget = 0;
+let tilt = 0;
 
-const soundButton = document.getElementById('sound');
+const reducedMotion =
+  matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-function note(midi, time, duration, volume) {
-  const frequency = 440 * Math.pow(2, (midi - 69) / 12);
+function animate(time) {
+  frame = 0;
 
-  [1, 2, 3].forEach((harmonic, i) => {
-    const oscillator = ctx.createOscillator();
-    const gain = ctx.createGain();
+  if (document.hidden || !$('page').classList.contains('opened')) return;
 
-    oscillator.type = 'sine';
-    oscillator.frequency.value = frequency * harmonic;
+  const dt = lastTime
+    ? Math.min((time-lastTime)/16.667,2)
+    : 1;
 
-    gain.gain.setValueAtTime(0, time);
-    gain.gain.linearRampToValueAtTime(
-      volume / [1, 6, 14][i],
-      time + .012
+  lastTime = time;
+  tilt += (tiltTarget-tilt)*Math.min(.08*dt,1);
+
+  cards.forEach((card,i) => {
+    if (!card.ready) return;
+
+    if (!drag || drag.card !== card) {
+      const target = tilt*(.85+(i%3)*.12);
+
+      card.velocity += (target-card.angle)*.018*dt;
+      card.velocity *= Math.pow(.94,dt);
+      card.angle += card.velocity*dt;
+      card.angle = clamp(card.angle,-.55,.55);
+
+      card.liftVelocity += -card.lift*.025*dt;
+      card.liftVelocity *= Math.pow(.9,dt);
+      card.lift = clamp(
+        card.lift+card.liftVelocity*dt,-16,16
+      );
+    }
+
+    card.swing.style.transform =
+      `translateY(${card.lift}px) rotate(${card.angle}rad)`;
+  });
+
+  frame = requestAnimationFrame(animate);
+}
+
+function wake() {
+  if (!frame && !document.hidden) {
+    lastTime = 0;
+    frame = requestAnimationFrame(animate);
+  }
+}
+
+function releasePointer() {
+  const id = activePointer;
+  activePointer = null;
+
+  if (drag) drag.card.holder.classList.remove('dragging');
+
+  drag = null;
+  previousPoint = null;
+
+  if (id !== null && composition.hasPointerCapture(id)) {
+    composition.releasePointerCapture(id);
+  }
+}
+
+composition.addEventListener('pointerdown', event => {
+  if (
+    activePointer !== null ||
+    (event.pointerType==='mouse' && event.button!==0)
+  ) return;
+
+  const holder = event.target.closest('.hanger');
+  const card = holder
+    ? cards[Number(holder.dataset.card)]
+    : null;
+
+  if (
+    !cards.some(item=>item.ready) ||
+    (card && !card.ready)
+  ) return;
+
+  activePointer = event.pointerId;
+  previousPoint = {
+    x:event.clientX,
+    y:event.clientY
+  };
+
+  composition.setPointerCapture(event.pointerId);
+
+  if (card) {
+    drag = {
+      card,
+      x:event.clientX,
+      y:event.clientY,
+      angle:card.angle,
+      lift:card.lift
+    };
+
+    card.velocity = 0;
+    card.liftVelocity = 0;
+    card.holder.classList.add('dragging');
+  }
+
+  event.preventDefault();
+  wake();
+});
+
+composition.addEventListener('pointermove', event => {
+  if (
+    activePointer !== null &&
+    event.pointerId !== activePointer
+  ) return;
+
+  if (
+    activePointer === null &&
+    event.pointerType !== 'mouse'
+  ) return;
+
+  if (!previousPoint) {
+    previousPoint = {
+      x:event.clientX,
+      y:event.clientY
+    };
+    return;
+  }
+
+  const dx = clamp(event.clientX-previousPoint.x,-35,35);
+  const dy = clamp(event.clientY-previousPoint.y,-30,30);
+
+  previousPoint = {
+    x:event.clientX,
+    y:event.clientY
+  };
+
+  if (drag) {
+    const card = drag.card;
+    const angle = clamp(
+      drag.angle-(event.clientX-drag.x)/190,
+      -.55,.55
     );
-    gain.gain.exponentialRampToValueAtTime(.0001, time + duration);
+
+    card.velocity = clamp(
+      (angle-card.angle)*.65,-.07,.07
+    );
+    card.angle = angle;
+
+    card.lift = clamp(
+      drag.lift+(event.clientY-drag.y)*.18,
+      -16,16
+    );
+
+    card.liftVelocity = clamp(dy*.12,-2,2);
+  }
+
+  cards.forEach(card => {
+    if (
+      !card.ready ||
+      (drag && drag.card===card)
+    ) return;
+
+    const rect = card.swing.getBoundingClientRect();
+    const x = rect.left+rect.width/2;
+    const y = rect.top+rect.height/2;
+    const distance = Math.hypot(
+      event.clientX-x,
+      event.clientY-y
+    );
+
+    const reach = rect.width*.85;
+
+    if (distance < reach) {
+      const strength = 1-distance/reach;
+
+      card.velocity = clamp(
+        card.velocity-dx*.0007*strength,
+        -.065,.065
+      );
+
+      card.liftVelocity = clamp(
+        card.liftVelocity+dy*.025*strength,
+        -1.6,1.6
+      );
+    }
+  });
+
+  wake();
+});
+
+composition.addEventListener('pointerup',releasePointer);
+composition.addEventListener('pointercancel',releasePointer);
+composition.addEventListener('lostpointercapture',releasePointer);
+
+composition.addEventListener('pointerleave',()=>{
+  if(activePointer===null) previousPoint=null;
+});
+
+// Управление наклоном телефона.
+let motionEnabled = false;
+let motionSeen = false;
+let baseline = null;
+let motionTimeout;
+
+function orientationValue(event) {
+  const screenAngle = (
+    screen.orientation?.angle ||
+    window.orientation ||
+    0
+  )*Math.PI/180;
+
+  return (
+    (event.gamma||0)*Math.cos(screenAngle) +
+    (event.beta||0)*Math.sin(screenAngle)
+  );
+}
+
+function handleOrientation(event) {
+  if (
+    !motionEnabled ||
+    event.gamma===null ||
+    event.beta===null
+  ) return;
+
+  if (
+    !Number.isFinite(event.gamma) ||
+    !Number.isFinite(event.beta)
+  ) return;
+
+  const value = orientationValue(event);
+
+  if (baseline===null) baseline=value;
+
+  motionSeen=true;
+  clearTimeout(motionTimeout);
+
+  $('motion').textContent='наклон вкл.';
+  $('motionStatus').textContent='';
+
+  tiltTarget=clamp(
+    -(value-baseline)*Math.PI/180*.55,
+    -.35,.35
+  );
+}
+
+async function enableMotion() {
+  const Motion = window.DeviceOrientationEvent;
+
+  if (!window.isSecureContext || !Motion) {
+    $('motionStatus').textContent=
+      'Для наклона открой сайт по HTTPS. Пальцем двигать можно и так.';
+    return;
+  }
+
+  try {
+    if (typeof Motion.requestPermission==='function') {
+      const result=await Motion.requestPermission();
+
+      if(result!=='granted') {
+        $('motionStatus').textContent=
+          'Доступ к наклону не разрешён. Карточки можно двигать пальцем.';
+        return;
+      }
+    }
+
+    motionEnabled=true;
+    motionSeen=false;
+    baseline=null;
+
+    window.removeEventListener(
+      'deviceorientation',handleOrientation
+    );
+    window.addEventListener(
+      'deviceorientation',handleOrientation,{passive:true}
+    );
+
+    $('motion').setAttribute('aria-pressed','true');
+    $('motion').setAttribute(
+      'aria-label','Выключить управление наклоном'
+    );
+    $('motion').textContent='наклон…';
+
+    clearTimeout(motionTimeout);
+
+    motionTimeout=setTimeout(()=>{
+      if(!motionSeen) {
+        $('motionStatus').textContent=
+          'Датчик пока не отвечает. Проверь разрешение на движение в браузере или двигай карточки пальцем.';
+      }
+    },4000);
+
+  } catch(error) {
+    $('motionStatus').textContent=
+      'Браузер не дал доступ к наклону. Движения пальцем работают.';
+  }
+}
+
+function disableMotion() {
+  motionEnabled=false;
+  clearTimeout(motionTimeout);
+
+  window.removeEventListener(
+    'deviceorientation',handleOrientation
+  );
+
+  tiltTarget=0;
+  baseline=null;
+
+  $('motion').textContent='наклон ◇';
+  $('motion').setAttribute('aria-pressed','false');
+  $('motion').setAttribute(
+    'aria-label','Включить управление наклоном'
+  );
+  $('motionStatus').textContent='';
+}
+
+$('motion').addEventListener('click',()=>{
+  if(motionEnabled) disableMotion();
+  else enableMotion();
+});
+
+window.addEventListener('orientationchange',()=>{
+  baseline=null;
+});
+
+// Музыка без отдельных аудиофайлов.
+let ctx,master,timer;
+let isPlaying=false;
+let step=0;
+
+const soundButton=$('sound');
+
+function note(midi,time,duration,volume) {
+  const frequency=440*Math.pow(2,(midi-69)/12);
+
+  [1,2,3].forEach((harmonic,i)=>{
+    const oscillator=ctx.createOscillator();
+    const gain=ctx.createGain();
+
+    oscillator.type='sine';
+    oscillator.frequency.value=frequency*harmonic;
+
+    gain.gain.setValueAtTime(0,time);
+    gain.gain.linearRampToValueAtTime(
+      volume/[1,6,14][i],time+.012
+    );
+    gain.gain.exponentialRampToValueAtTime(
+      .0001,time+duration
+    );
 
     oscillator.connect(gain);
     gain.connect(master);
+
     oscillator.start(time);
-    oscillator.stop(time + duration + .05);
+    oscillator.stop(time+duration+.05);
   });
 }
 
-const melody = [
-  76, 79, 83, 81, 79, 76, 74, 72,
-  74, 76, 79, 76, 74, 72, 71, 74,
-  76, 79, 84, 83, 79, 76, 74, 72,
-  74, 76, 79, 81, 79, 76, 74, 72
+const melody=[
+  76,79,83,81,79,76,74,72,
+  74,76,79,76,74,72,71,74,
+  76,79,84,83,79,76,74,72,
+  74,76,79,81,79,76,74,72
 ];
 
-const chords = [
-  [48, 55, 60, 64],
-  [45, 52, 57, 60],
-  [41, 48, 53, 57],
-  [43, 50, 55, 59]
+const chords=[
+  [48,55,60,64],
+  [45,52,57,60],
+  [41,48,53,57],
+  [43,50,55,59]
 ];
 
 function schedule() {
-  if (!isPlaying) return;
+  if(!isPlaying)return;
 
-  const time = ctx.currentTime + .08;
-  note(melody[step % 32], time, 2.5, .095);
+  const time=ctx.currentTime+.08;
+  note(melody[step%32],time,2.5,.095);
 
-  if (step % 4 === 0) {
-    const chord = chords[Math.floor(step / 8) % 4];
-    chord.forEach((midi, i) => {
-      note(midi, time + i * .11, 4, .055);
+  if(step%4===0) {
+    chords[Math.floor(step/8)%4].forEach((m,i)=>{
+      note(m,time+i*.11,4,.055);
     });
   }
 
   step++;
-  timer = setTimeout(schedule, 540);
+  timer=setTimeout(schedule,540);
 }
 
 function syncSound() {
-  soundButton.classList.toggle('playing', isPlaying);
-  soundButton.setAttribute('aria-pressed', String(isPlaying));
+  soundButton.classList.toggle('playing',isPlaying);
+
+  soundButton.setAttribute(
+    'aria-pressed',String(isPlaying)
+  );
   soundButton.setAttribute(
     'aria-label',
-    isPlaying ? 'Выключить музыку' : 'Включить музыку'
+    isPlaying?'Выключить музыку':'Включить музыку'
   );
-  document.getElementById('soundText').textContent =
-    isPlaying ? 'звук вкл.' : 'звук выкл.';
+
+  $('soundText').textContent=
+    isPlaying?'звук вкл.':'звук выкл.';
 }
 
 async function startMusic() {
   try {
-    if (!ctx) {
-      ctx = new (window.AudioContext || window.webkitAudioContext)();
-      master = ctx.createGain();
-      master.gain.value = .65;
+    if(!ctx) {
+      ctx=new(
+        window.AudioContext ||
+        window.webkitAudioContext
+      )();
+
+      master=ctx.createGain();
+      master.gain.value=.65;
       master.connect(ctx.destination);
     }
 
     await ctx.resume();
-    isPlaying = true;
+
+    if(isPlaying)return;
+    isPlaying=true;
+
     master.gain.cancelScheduledValues(ctx.currentTime);
-    master.gain.setTargetAtTime(.65, ctx.currentTime, .12);
+    master.gain.setTargetAtTime(
+      .65,ctx.currentTime,.12
+    );
 
     schedule();
     syncSound();
-  } catch (error) {
-    isPlaying = false;
+
+  } catch(error) {
+    isPlaying=false;
     syncSound();
   }
 }
 
 function stopMusic() {
-  isPlaying = false;
+  isPlaying=false;
   clearTimeout(timer);
 
-  if (ctx) {
-    master.gain.setTargetAtTime(0, ctx.currentTime, .08);
+  if(ctx) {
+    master.gain.setTargetAtTime(
+      0,ctx.currentTime,.08
+    );
   }
 
   syncSound();
 }
 
-let replayTimer;
+// Открытие и повтор.
+let revealTimer;
 
 function reveal() {
-  document.getElementById('page').classList.add('opened');
-  document.getElementById('tap').disabled = true;
-  clearTimeout(replayTimer);
+  releasePointer();
 
-  replayTimer = setTimeout(() => {
-    document.getElementById('announcement').textContent =
-      'Полина, ты такая милая.';
-  }, 5500);
+  cards.forEach(card=>{
+    card.angle=0;
+    card.velocity=0;
+    card.lift=0;
+    card.liftVelocity=0;
+    card.ready=false;
+    card.swing.style.transform='';
+  });
+
+  $('page').classList.add('opened');
+  $('tap').disabled=true;
+
+  clearTimeout(revealTimer);
+
+  revealTimer=setTimeout(()=>{
+    $('announcement').textContent=
+      'Полина, ты такая милая. Карточки можно двигать пальцем.';
+    wake();
+  },5500);
+
+  wake();
 }
 
-document.getElementById('tap').addEventListener('click', () => {
+$('tap').addEventListener('click',()=>{
   reveal();
-  if (!isPlaying) startMusic();
+
+  if(!isPlaying)startMusic();
+
+  if(
+    !reducedMotion &&
+    window.isSecureContext &&
+    window.DeviceOrientationEvent &&
+    typeof DeviceOrientationEvent.requestPermission!=='function'
+  ) {
+    enableMotion();
+  }
 });
 
-soundButton.addEventListener('click', () => {
-  if (isPlaying) stopMusic();
+soundButton.addEventListener('click',()=>{
+  if(isPlaying)stopMusic();
   else startMusic();
 });
 
-document.getElementById('replay').addEventListener('click', () => {
-  clearTimeout(replayTimer);
-  const page = document.getElementById('page');
-  page.classList.remove('opened');
-  document.getElementById('announcement').textContent = '';
-  void page.offsetWidth;
+$('replay').addEventListener('click',()=>{
+  clearTimeout(revealTimer);
+
+  $('page').classList.remove('opened');
+  $('announcement').textContent='';
+
+  void $('page').offsetWidth;
   reveal();
 });
 
-document.addEventListener('visibilitychange', () => {
-  if (document.hidden && isPlaying) stopMusic();
+document.addEventListener('visibilitychange',()=>{
+  if(document.hidden) {
+    if(isPlaying)stopMusic();
+
+    releasePointer();
+    cancelAnimationFrame(frame);
+    frame=0;
+    lastTime=0;
+  } else {
+    baseline=null;
+    wake();
+  }
 });
 </script>
 </body>
